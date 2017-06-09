@@ -28,6 +28,16 @@ export default {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    /*
+     *inject es5 modules as global vars. Required for bootstrap build
+     * https://github.com/IdanCo/webpack-modular/blob/bootstrap4/conf/webpack.base.config.js
+     */
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Tether: 'tether'
+    }),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
       template: 'src/index.ejs',
       minify: {

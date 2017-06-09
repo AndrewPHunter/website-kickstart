@@ -31,6 +31,17 @@ export default {
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
 
+    /*
+     *inject es5 modules as global vars. Required for bootstrap build
+     * https://github.com/IdanCo/webpack-modular/blob/bootstrap4/conf/webpack.base.config.js
+     */
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Tether: 'tether'
+    }),
+
     // Generate an external css file with a hash in the filename
     new ExtractTextPlugin('[name].[contenthash].css'),
 
@@ -51,9 +62,6 @@ export default {
         minifyURLs: true
       },
       inject: true,
-      // Note that you can add custom options here if you need to handle other custom logic in index.html
-      // To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
-      trackJSToken: ''
     }),
 
     // Minify JS
