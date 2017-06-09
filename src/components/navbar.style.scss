@@ -1,0 +1,29 @@
+@mixin nav-pill-active{
+  color: $nav-pills-active-link-color;
+  background-color: $nav-pills-active-link-bg;
+}
+
+.home{
+  .home-link{
+    @include nav-pill-active();
+  }
+}
+
+.about{
+  .about-link{
+    @include nav-pill-active();
+  }
+}
+
+.app{
+  .app-link{
+    @include nav-pill-active();
+  }
+}
+
+.nav-link{
+  margin-left: .5rem;
+  @include hover-focus{
+    @include nav-pill-active();
+  }
+}
