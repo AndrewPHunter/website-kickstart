@@ -5,12 +5,13 @@ import path from 'path';
 
 export default {
   resolve: {
-    extensions: ['*', '.js', '.json']
+    extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   entry: [
     // must be first entry to properly set public path
     './src/webpack-public-path',
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
