@@ -1,0 +1,18 @@
+@mixin footer-text(){
+  color: $nav-pills-active-link-color;
+  background-color: $nav-pills-active-link-bg;
+}
+
+footer{
+
+  .footer-body{
+    min-height: 100px;
+    @include footer-text();
+    a{
+      @include footer-text();
+      @include hover-focus{
+        text-decoration: none;
+      }
+    }
+  }
+}
