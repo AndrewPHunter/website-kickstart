@@ -9,12 +9,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Website KickStarter</title>
 </head>
-<body class="container">
-<div class="home">
-  <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
-  <%= require('ejs-loader!./components/navbar.view.ejs')()%>
-
+<body>
+<div class="container-fluid background-wrapper">
+  <div class="container home">
+    <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
+    <%= require('ejs-loader!./components/navbar.view.ejs')()%>
+    <div class="row">
+      <div class="col-12">
+        <div class="jumbotron">
+          <h1 class="display-3">Website Kickstart</h1>
+          <p class="lead">
+            This is a simple demo application which uses <a href="https://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap 4</a>
+            and <a href="https://webpack.js.org/concepts/" target="_blank">Webpack</a> to demonstrate a rapid multi-page website development process
+          </p>
+          <hr class="my-4">
+          <p>
+            The development environment uses Webpack 2 and BrowserSync to create a rapid, iterative development environment for producing
+            multi-page static file websites.
+          </p>
+          <p class="lead">
+            <a class="btn btn-large btn-primary" role="button"
+               href="https://github.com/AndrewPHunter/website-kickstart" target="_blank">
+              Learn More
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h1>The Modern Web</h1>
+        <p>
+          Modern web development requires both agile and iterative development processes to produce quality websites on demand
+          with little to no overhead in getting started between projects.This demo project utilizes the following technologies to enable rapid multi-page website creation
+          using the following technologies to aid developers in creating high quality projects
+        </p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-10 justify-content-center">
+        <ul class="list-unstyled">
+          <li class="media">
+            <img class="d-flex mr-3" src="https://v4-alpha.getbootstrap.com/assets/brand/bootstrap-solid.svg">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://v4-alpha.getbootstrap.com">Twitter Bootstrap</a></h5>
+              Bootstrap is one of the most popular HTML, CSS, and JS frameworks in the world for building responsive,
+              mobile-first projects on the web.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="http://sass-lang.com/favicon.ico">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="http://sass-lang.com">Sass</a></h5>
+              Sass is the most mature, stable, and powerful professional grade CSS extension language in the world. Sass is completely compatible with all versions of CSS allowing
+              you to seamlessly use any existing CSS libraries or create your own. As a superset of CSS and CSS constructs are legal within SASS and when combined with node-sass and
+              sass-loader it fits perfectly with modern build systems.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="https://webpack.js.org/6bc5d8cf78d442a984e70195db059b69.svg">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://webpack.js.org/">Webpack</a></h5>
+              Webpack is a module bundler for modern JavaScript applications. When webpack processes your application, it recursively builds a dependency graph that includes every
+              module your application needs, then packages all of those modules into a small number of bundles - often only one - to be loaded by the browser.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="/images/babel-160x160.png">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="http://babeljs.io">Babel</a></h5>
+              Babel has support for the latest version of JavaScript through syntax transformers. These plugins allow you to use new syntax, right now without waiting for browser support.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="https://www.browsersync.io/favicon.ico">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://www.browsersync.io">BrowserSync</a></h5>
+              Browsersync cuts out repetitive manual tasks. It’s like an extra pair of hands. Customise an array of sync settings from the UI or command line to create a personalised test environment.
+              Need more control? Browsersync is easily integrated with your web platform, build tools, and other Node.js projects.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="/images/localtunnel.png">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://localtunnel.github.io/www/">LocalTunnel</a></h5>
+              Localtunnel allows you to easily share a web service on your local development machine without messing with DNS and firewall settings. Localtunnel will assign you a unique
+              publicly accessible url that will proxy all requests to your locally running webserver.
+            </div>
+          </li>
+          <li class="media my-4">
+            <img class="d-flex mr-3" src="https://surge.sh/images/logos/svg/surge-logo.svg">
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://surge.sh">Surge</a></h5>
+              Static web publishing for front-end developers. Simple, single-command web publishing. Publish HTML, CSS, and JS for free, without leaving the command line.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-
 </body>
 </html>
