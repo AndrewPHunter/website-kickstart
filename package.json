@@ -29,8 +29,9 @@
   "author": "Andrew Hunter",
   "license": "MIT",
   "dependencies": {
-    "object-assign": "4.1.0",
     "bootstrap": "4.0.0-alpha.6",
+    "jqcloud2": "^2.0.3",
+    "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-redux": "5.0.5",
@@ -38,7 +39,8 @@
     "react-router-redux": "4.0.8",
     "react-styleable": "2.2.5",
     "redux": "3.6.0",
-    "redux-thunk": "2.2.0"
+    "redux-thunk": "2.2.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "7.1.1",

@@ -13,12 +13,70 @@
 <div class="container-fluid background-wrapper">
   <div class="container about">
     <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
-    <%= require('ejs-loader!../components/navbar.view.ejs')()%>
-   <h1>This is the about page</h1>
-    <p><span class="lead">TODO:</span> Make something in this page that is dynamic</p>
-    <p>Perhaps something about ejs-loader</p>
+    <%= require('ejs-loader!../components/navbar.view.ejs')() %>
+    <div class="row">
+      <div class="col-12">
+        <div class="jumbotron">
+          <h1 class="display-3">About</h1>
+          <p class="lead">
+            This website was created as a demo to showcase modern web development build systems.
+          </p>
+          <hr class="my-4">
+          <p>
+            The main value in having all this text is to show how one can use Webpack to build multiple page
+            static file websites. Although it may be fun to look at the most rewarding experience will be by playing
+            with the source code available on the github repo.
+          </p>
+          <p class="lead">
+            <a class="btn btn-large btn-primary" role="button"
+               href="https://github.com/AndrewPHunter/website-kickstart" target="_blank">
+              GitHub
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h1>Static File Websites</h1>
+        <hr>
+        <p>
+          <span class="lead">Static File websites often get a bad wrap</span> as being not modern and the "old way" of doing things.
+          This opinion however largely comes from a misunderstanding into what static file websites are, and in part, due to the rise of many server side frameworks
+          such as Ruby On Rails and ASP.NET MVC which allows for rapid <em>server side</em> dynamic content rendering.
+        </p>
+        <p>
+          The world continues to press on however, and with the almost(I'm looking at you IE) ubiquitous establishment of standards based browsers, developers can largely
+          provide dynamic content via Javascript utilizing any of the numerous frameworks out there today such as React, Angular, or any of the jQuery based systems.  That is then
+          the key to understanding what static file websites are, they do not mean static content, they mean <b>all dynamic content is rendered on the client</b> vice requiring a
+          specialized server with intimate knowledge of the website.
+        </p>
+        <p>
+          While there are definite use cases for either progressive web applications or server side rendering, such as supporting various accessibility systems and interfacing with government
+          clients which disallow a large portion of client scripting, the traditional answer of server side rendering with various MV-* frameworks should no longer be the answer. Having a server
+          involved with intimate knowledge of the internals of website presentation breaks the separation of concerns principle and requires powerful, expensive server cycles for something even IE
+          could manage to render. The solution to the special use cases consists of the isomorphic qualities of frameworks such as React which allows the server to load the 'black-box' app passing in the route
+          and then simply sending the result to the client. This sidesteps the special situations gracefully and still maintains the website as a 'static file site'.
+        </p>
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-12">
+        <h2>Static File Websites does not mean static content</h2>
+        <p>
+          In fact javascript intensive web applications have begun to become the defacto standard for many projects. Let's periodically
+          take a look at some of the more popular javascript libraries on GitHub and see what is trending.
+        </p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 offset-2">
+        <div id="app" class="jqcloud"></div>
+      </div>
+    </div>
     <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
-    <%= require('ejs-loader!../components/footer.view.ejs')()%>
+    <%= require('ejs-loader!../components/footer.view.ejs')() %>
   </div>
 </div>
 </body>

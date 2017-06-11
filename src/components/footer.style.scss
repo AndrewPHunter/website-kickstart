@@ -4,8 +4,9 @@
 }
 
 footer{
-
   .footer-body{
+    margin-bottom: -9999px;
+    padding-bottom: 9999px;
     min-height: 100px;
     @include footer-text();
     a{
