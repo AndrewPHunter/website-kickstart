@@ -1,7 +1,9 @@
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
+
+import {buildEntries, htmlPlugin} from './tools/webpack.util';
+import pages from './src/webpack-entries';
 
 const webpackDev = [
   './src/webpack-public-path',
@@ -9,39 +11,12 @@ const webpackDev = [
   'webpack-hot-middleware/client?reload=true'
 ];
 
-const pages = [
-  {
-    template: 'src/index.ejs',
-    filename:'index.html',
-    key: 'home',
-    entry: path.resolve(__dirname, 'src/index.js'), // Defining path seems necessary for this to work consistently on Windows machines.
-    chunks: ['home']
-  },
-  {
-    template: 'src/about/index.ejs',
-    filename:'about/index.html',
-    key: 'about',
-    entry: path.resolve(__dirname, 'src/about/about.js'), // Defining path seems necessary for this to work consistently on Windows machines.
-    chunks: ['about']
-  }
-];
-
-function buildEntry(pages){
-  let entry = {};
-  pages.map((page)=>{
-    entry[page.key] = [
-      ...webpackDev,
-      page.entry
-    ];
-  });
-  return entry;
-}
 export default {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  entry: buildEntry(pages),
+  entry: buildEntries(pages, webpackDev),
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
@@ -65,16 +40,7 @@ export default {
       'window.jQuery': 'jquery',
       Tether: 'tether'
     }),
-    ...pages.map((page)=> new HtmlWebpackPlugin({ // Create HTML files that includes references to bundled CSS and JS.
-      filename: page.filename,
-      template: page.template,
-      chunks: page.chunks,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      inject: true
-    })),
+    ...htmlPlugin(pages),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
       debug: true,
