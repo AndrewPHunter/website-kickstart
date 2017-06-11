@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  **NOTE:** This is a template for index.html. It uses ejs, ejs-loader and htmlWebpackPlugin to generate a different html file for each environment. htmlWebpackPlugin will dynamically add references to the scripts and styles that it bundles to this file. The generated bundles have hash-based filenames, so it's necessary to add the references dynamically.
+  For more info on ejs, see http://www.embeddedjs.com/. For examples of using it with htmlWebpackPlugin, see https://github.com/jaketrent/html-webpack-template/blob/master/index.ejs
+  -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Website KickStarter</title>
+</head>
+<body>
+<div class="container-fluid background-wrapper">
+  <div class="container about">
+    <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
+    <%= require('ejs-loader!../components/navbar.view.ejs')()%>
+   <h1>This is the about page</h1>
+    <p><span class="lead">TODO:</span> Make something in this page that is dynamic</p>
+    <p>Perhaps something about ejs-loader</p>
+    <!-- Use EJS-Loader to load our individual components into our webpage to minimize code duplication-->
+    <%= require('ejs-loader!../components/footer.view.ejs')()%>
+  </div>
+</div>
+</body>
+</html>

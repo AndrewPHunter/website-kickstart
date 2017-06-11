@@ -3,23 +3,50 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
 
+const webpackDev = [
+  './src/webpack-public-path',
+  'react-hot-loader/patch',
+  'webpack-hot-middleware/client?reload=true'
+];
+
+const pages = [
+  {
+    template: 'src/index.ejs',
+    filename:'index.html',
+    key: 'home',
+    entry: path.resolve(__dirname, 'src/index.js'), // Defining path seems necessary for this to work consistently on Windows machines.
+    chunks: ['home']
+  },
+  {
+    template: 'src/about/index.ejs',
+    filename:'about/index.html',
+    key: 'about',
+    entry: path.resolve(__dirname, 'src/about/about.js'), // Defining path seems necessary for this to work consistently on Windows machines.
+    chunks: ['about']
+  }
+];
+
+function buildEntry(pages){
+  let entry = {};
+  pages.map((page)=>{
+    entry[page.key] = [
+      ...webpackDev,
+      page.entry
+    ];
+  });
+  return entry;
+}
 export default {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  entry: [
-    // must be first entry to properly set public path
-    './src/webpack-public-path',
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
-  ],
+  entry: buildEntry(pages),
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name]/[name].bundle.js'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -38,14 +65,16 @@ export default {
       'window.jQuery': 'jquery',
       Tether: 'tether'
     }),
-    new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: 'src/index.ejs',
+    ...pages.map((page)=> new HtmlWebpackPlugin({ // Create HTML files that includes references to bundled CSS and JS.
+      filename: page.filename,
+      template: page.template,
+      chunks: page.chunks,
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
       inject: true
-    }),
+    })),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
       debug: true,
