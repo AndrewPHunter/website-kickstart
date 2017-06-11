@@ -1,5 +1,4 @@
 import '../styles/site.common.scss';
-import 'babel-polyfill';
 import App from './app/about.app';
 
 $(async ()=>{

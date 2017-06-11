@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'whatwg-fetch';
 import 'jqcloud2';
 import 'jqcloud2/dist/jqcloud.css';
@@ -55,11 +54,13 @@ export default class App{
   }
 
   processData(data){
-    return data.items.map(item=>{
-      return {
-        text: item.name,
-        weight: item.watchers
-      };
+    return data.items
+      .filter(item=>item.name !== 'freeCodeCamp') //remove top result to minimize skew
+      .map(item=>{
+        return {
+          text: item.name,
+          weight: item.watchers
+        };
     });
   }
 }
