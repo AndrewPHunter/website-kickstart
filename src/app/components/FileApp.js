@@ -22,6 +22,7 @@ class App{
   }
 
   editFile(editedFile){
+    editedFile["objectUrl"] = FileLoader.dataUriToBlobUrl(editedFile.data);
     this.files = this.files
       .filter(file=>file.name !== editedFile.name)
       .concat(editedFile);

@@ -11,6 +11,9 @@
  *
  * @author Alejandro U. Alvarez <alejandro@urbanoalvarez.es>
  * @version 1.0.4
+ *
+ * Several Adjustments made to fix numerous bugs
+ * TODO: remove this and create own version when have a minute
  */
 
 /* eslint-disable */
@@ -56,8 +59,8 @@
 				"green" : [[0, 3, 0],[0, 3, 0],[0, 3, 0]]
 			};
 
-		destCanvas.width = this.width();
-		destCanvas.height = this.height();
+		destCanvas.width = this[0].naturalWidth;
+		destCanvas.height = this[0].naturalHeight;
 
 		// Fill with empty pixels
 		destCtx.beginPath();
@@ -72,8 +75,8 @@
 			srcCanvas = document.createElement('canvas');
 			srcCtx = srcCanvas.getContext('2d');
 			// Resize canvas to fit img
-			srcCanvas.width = this.width();
-			srcCanvas.height = this.height();
+			srcCanvas.width = this[0].naturalWidth;
+			srcCanvas.height = this[0].naturalHeight;
 			// Draw image into canvas
 			srcCtx.drawImage(this.get(0), 0, 0);
 			srcImgd = srcCtx.getImageData(0, 0, srcCanvas.width, srcCanvas.height);
@@ -85,7 +88,7 @@
 			return;
 		}
 		srcCtx = srcCanvas.getContext('2d');
-		srcImgd = srcCtx.getImageData(0, 0, this.width(), this.height());
+		srcImgd = srcCtx.getImageData(0, 0, this[0].naturalWidth, this[0].naturalHeight);
 
 		// --------- IMAGE FUNCTIONS ----------- //
 

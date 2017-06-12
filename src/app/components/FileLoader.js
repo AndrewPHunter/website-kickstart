@@ -51,10 +51,22 @@ export default class FileLoader{
       reader.onload = (event)=>{
         resolve( {
           name: file.name,
-          data: event.target.result
+          data: event.target.result,
+          objectUrl: FileLoader.dataUriToBlobUrl(event.target.result)
         });
       };
       reader.readAsDataURL(file);
     });
+  }
+
+  static dataUriToBlobUrl(data){
+    let arr = data.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    const blob = new Blob([u8arr], {type:mime});
+    return URL.createObjectURL(blob);
   }
 }
