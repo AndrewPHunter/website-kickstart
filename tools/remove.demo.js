@@ -2,7 +2,9 @@
 import rimraf from 'rimraf';
 import fs from 'fs';
 import {chalkSuccess} from './chalkConfig';
-const defaultIndex = require('html-loader!./index.default.html');
+
+
+const defaultIndex = fs.readFileSync('index.default.html', 'utf8');
 
 /* eslint-disable no-console */
 
