@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 var chalk = require('chalk');
 var replace = require("replace");
 var prompt = require("prompt");
-var prompts = require('./setupPrompts');
+var prompts = require('./setup.prompts');
 
 var chalkSuccess = chalk.green;
 var chalkProcessing = chalk.blue;
