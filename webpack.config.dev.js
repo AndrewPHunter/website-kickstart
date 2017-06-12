@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
 
-import {buildEntries, htmlPlugin} from './tools/webpack.util';
+import {buildEntries, htmlPluginDev} from './tools/webpack.util';
 import pages from './src/webpack-entries';
 
 const webpackDev = [
@@ -40,7 +40,7 @@ export default {
       'window.jQuery': 'jquery',
       Tether: 'tether'
     }),
-    ...htmlPlugin(pages),
+    ...htmlPluginDev(pages),
     new webpack.LoaderOptionsPlugin({
       minimize: false,
       debug: true,
