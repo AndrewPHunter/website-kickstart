@@ -1,0 +1,17 @@
+<script id="file-list" type="text/x-handlebars-template">
+  <ul class="list-unstyled">
+    {{#list}}
+    <li class="media my-4">
+      <img class="d-flex mr-3" src={{data}}>
+      <div class="media-body">
+        <h5 class="mt-0">{{name}}</h5>
+        <div>
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editor" data-image={{data}} data-id={{name}}>Edit</button>
+          <a href={{data}} target="_blank" class="btn btn-success btn-sm" download={{name}}>Save</a>
+          <button class="btn btn-danger btn-sm delete" data-id={{name}}>Delete</button>
+        </div>
+      </div>
+    </li>
+    {{/list}}
+  </ul>
+</script>

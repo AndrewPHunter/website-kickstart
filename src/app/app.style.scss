@@ -1,0 +1,27 @@
+@import '../styles/site.common';
+
+#dropzone{
+  min-height:200px;
+  border: 2px dashed $brand-primary;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+}
+
+.media {
+  img{
+    width: 100px;
+  }
+}
+
+.modal-xl{
+  width:90%;
+  max-width: 1200px;
+
+  ul {
+    button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  }
+}

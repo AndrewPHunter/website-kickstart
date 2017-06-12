@@ -14,5 +14,12 @@ export default [
     key: 'about',
     entry: path.resolve(__dirname, 'about/about.js'), // Defining path seems necessary for this to work consistently on Windows machines.
     chunks: ['about']
+  },
+  {
+    template: path.resolve(__dirname, 'app/index.ejs'),
+    filename: 'app/index.html',
+    key: 'app',
+    entry: path.resolve(__dirname, 'app/index.js'),
+    chunks: ['app']
   }
 ];

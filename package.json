@@ -31,6 +31,8 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "jqcloud2": "^2.0.3",
+    "handlebars": "4.0.10",
+    "mustache": "^2.3.0",
     "object-assign": "4.1.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
@@ -143,10 +145,13 @@
           "react-hmre"
         ],
         "plugins": [
-          ["transform-runtime", {
-            "polyfill":false,
-            "regenerator":true
-          }]
+          [
+            "transform-runtime",
+            {
+              "polyfill": false,
+              "regenerator": true
+            }
+          ]
         ]
       },
       "production": {
@@ -163,10 +168,13 @@
         "plugins": [
           "transform-react-constant-elements",
           "transform-react-remove-prop-types",
-          ["transform-runtime", {
-            "polyfill":false,
-            "regenerator":true
-          }]
+          [
+            "transform-runtime",
+            {
+              "polyfill": false,
+              "regenerator": true
+            }
+          ]
         ]
       },
       "test": {
