@@ -4,7 +4,7 @@ import fs from 'fs';
 import {chalkSuccess} from './chalkConfig';
 
 
-const defaultIndex = fs.readFileSync('index.default.html', 'utf8');
+const defaultIndex = fs.readFileSync('./setup/index.default.html', 'utf8');
 
 /* eslint-disable no-console */
 
