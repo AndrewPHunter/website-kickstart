@@ -1,10 +1,11 @@
 // This script removes demo app files
+import path from 'path';
 import rimraf from 'rimraf';
 import fs from 'fs';
 import {chalkSuccess} from './chalkConfig';
 
 
-const defaultIndex = fs.readFileSync('./setup/index.default.html', 'utf8');
+const defaultIndex = fs.readFileSync(path.resolve(__dirname,'index.default.html'), 'utf8');
 
 /* eslint-disable no-console */
 
