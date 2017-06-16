@@ -3,5 +3,7 @@ import App from './app/about.app';
 
 $(async ()=>{
   const appContainer = $('#app');
-  (await App.init(appContainer)).run();
+  const app = await App.init(appContainer);
+  appContainer.empty();
+  app.run();
 });
