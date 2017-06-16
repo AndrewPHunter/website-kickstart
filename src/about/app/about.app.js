@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
-import 'jqcloud2';
-import 'jqcloud2/dist/jqcloud.css';
+import '../jqcloud2/jqcloud';
+import '../jqcloud2/jqcloud.css';
 
 export default class App{
   constructor($elem){
