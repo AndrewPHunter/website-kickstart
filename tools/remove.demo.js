@@ -4,10 +4,14 @@ import rimraf from 'rimraf';
 import fs from 'fs';
 import {chalkSuccess} from './chalkConfig';
 
-
-const defaultIndex = fs.readFileSync(path.resolve(__dirname,'index.default.html'), 'utf8');
-
 /* eslint-disable no-console */
+
+const fileTemplates = [
+  {path: './src/index.ejs', content: path.resolve(__dirname, 'template/index.default.html')},
+  {path: './src/empty.spec.js', content:path.resolve(__dirname, 'template/empty.spec.js')},
+  {path: './src/styles/_site.theme.scss', content:path.resolve(__dirname, 'template/_site.theme.scss')},
+  {path: './src/styles/site.common.scss', content:path.resolve(__dirname, 'template/site.common.scss')}
+];
 
 const pathsToRemove = [
   './src/about/*',
@@ -19,6 +23,7 @@ const pathsToRemove = [
   './src/index.js',
   './src/index.style.scss',
   './src/webpack-entries.js',
+  './tools/templates',
   './tools/remove.demo.js',
 ];
 
@@ -38,14 +43,54 @@ const filesToCreate = [
   {
     path: './src/webpack-entries.js',
     content: '//setup your entry points here...\n import path from \'path\';\n export default [\n];'
+  },
+  {
+    path: './src/default.test.js',
+    content: defaultTest
   }
 ];
 
-function removePath(path, callback) {
-  rimraf(path, error => {
-    if (error) throw new Error(error);
-    callback();
+
+function loadTemplates(fileTemplates){
+  let tasks = [];
+  return new Promise(resolve=>{
+    fileTemplates.forEach((fileInfo)=>tasks.push(readFile(fileInfo)));
+    Promise.all(tasks).then((fileArray)=>resolve(fileArray))
+      .catch((error)=> {throw new Error(error);});
   });
+
+}
+
+function readFile({path, file}){
+  return new Promise((resolve, reject)=>{
+    fs.readFile(file, 'utf8', (error, content)=>{
+      if(error) reject(error);
+      return {
+        path,
+        content
+      };
+    });
+  });
+}
+
+
+function removeFile(path){
+  return new Promise((resolve, reject)=>{
+    rimraf(path, error => {
+      if(error) reject(error);
+      resolve();
+    });
+  });
+}
+
+function removeDemoFiles(fileList){
+  let tasks = [];
+  return new Promise(resolve=>{
+    fileList.forEach(path => tasks.push(removeFile(path)));
+    Promise.all(tasks).then(()=>resolve())
+      .catch(error=> {throw new Error(error);});
+  });
+
 }
 
 function createFile(file) {
@@ -63,17 +108,13 @@ function removePackageJsonScriptEntry(scriptName) {
     JSON.stringify(content, null, 2) + '\n');
 }
 
-let numPathsRemoved = 0;
-pathsToRemove.map(path => {
-  removePath(path, () => {
-    numPathsRemoved++;
-    if (numPathsRemoved === pathsToRemove.length) { // All paths have been processed
-      // Now we can create files since we're done deleting.
-      filesToCreate.map(file => createFile(file));
-    }
-  });
-});
+async function removeDemo(){
+  await removeDemoFiles(pathsToRemove);
+  let templates = await loadTemplates(fileTemplates);
+  (filesToCreate.concat(templates)).map(file=>createFile(file));
+}
 
+removeDemo();
 removePackageJsonScriptEntry('remove-demo');
 
 console.log(chalkSuccess('Demo app removed.'));

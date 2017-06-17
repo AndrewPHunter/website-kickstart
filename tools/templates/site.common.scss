@@ -1,0 +1,9 @@
+//Use this layout to override bootstrap theming variables
+@import 'site.theme';
+@import "~bootstrap/scss/bootstrap.scss";
+
+
+/* Your site wide styles should go here
+ * Component specific styles should go next to the component
+ * and webpack will bundle them all up for you!
+*/
