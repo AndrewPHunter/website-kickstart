@@ -7,10 +7,10 @@ import {chalkSuccess} from './chalkConfig';
 /* eslint-disable no-console */
 
 const fileTemplates = [
-  {path: './src/index.ejs', content: path.resolve(__dirname, 'template/index.default.html')},
-  {path: './src/empty.spec.js', content:path.resolve(__dirname, 'template/empty.spec.js')},
-  {path: './src/styles/_site.theme.scss', content:path.resolve(__dirname, 'template/_site.theme.scss')},
-  {path: './src/styles/site.common.scss', content:path.resolve(__dirname, 'template/site.common.scss')}
+  {path: './src/index.ejs', file: path.resolve(__dirname, 'template/index.default.html')},
+  {path: './src/empty.spec.js', file:path.resolve(__dirname, 'template/empty.spec.js')},
+  {path: './src/styles/_site.theme.scss', file:path.resolve(__dirname, 'template/_site.theme.scss')},
+  {path: './src/styles/site.common.scss', file:path.resolve(__dirname, 'template/site.common.scss')}
 ];
 
 const pathsToRemove = [
@@ -29,24 +29,12 @@ const pathsToRemove = [
 
 const filesToCreate = [
   {
-    path: './src/index.ejs',
-    content:defaultIndex,
-  },
-  {
     path: './src/index.js',
     content: '// Set up your application entry point here...'
   },
   {
-    path: './src/styles/_site.theme.scss',
-    content: '//Override any of the bootstrap variables here to customize your site theme https://github.com/twbs/bootstrap/blob/v4.0.0-alpha.6/scss/_variables.scss'
-  },
-  {
     path: './src/webpack-entries.js',
     content: '//setup your entry points here...\n import path from \'path\';\n export default [\n];'
-  },
-  {
-    path: './src/default.test.js',
-    content: defaultTest
   }
 ];
 
