@@ -10,10 +10,12 @@ const fileTemplates = [
   {path: './src/index.ejs', file: path.resolve(__dirname, 'templates/index.default.html')},
   {path: './src/empty.spec.js', file:path.resolve(__dirname, 'templates/empty.spec.js')},
   {path: './src/styles/_site.theme.scss', file:path.resolve(__dirname, 'templates/_site.theme.scss')},
-  {path: './src/styles/site.common.scss', file:path.resolve(__dirname, 'templates/site.common.scss')}
+  {path: './src/styles/site.common.scss', file:path.resolve(__dirname, 'templates/site.common.scss')},
+  {path: './src/webpack-entries.js', file:path.resolve(__dirname, 'templates/webpack-entries.js')}
 ];
 
 const pathsToRemove = [
+  './src/favicon.ico',
   './src/about/*',
   './src/app',
   './src/components',
@@ -31,10 +33,6 @@ const filesToCreate = [
   {
     path: './src/index.js',
     content: '// Set up your application entry point here...'
-  },
-  {
-    path: './src/webpack-entries.js',
-    content: '//setup your entry points here...\n import path from \'path\';\n export default [\n];'
   }
 ];
 
@@ -53,10 +51,10 @@ function readFile({path, file}){
   return new Promise((resolve, reject)=>{
     fs.readFile(file, 'utf8', (error, content)=>{
       if(error) reject(error);
-      return {
+      resolve({
         path,
         content
-      };
+      });
     });
   });
 }
@@ -97,8 +95,8 @@ function removePackageJsonScriptEntry(scriptName) {
 }
 
 async function removeDemo(){
-  await removeDemoFiles(pathsToRemove);
   let templates = await loadTemplates(fileTemplates);
+  await removeDemoFiles(pathsToRemove);
   (filesToCreate.concat(templates)).map(file=>createFile(file));
   removePackageJsonScriptEntry('remove-demo');
   console.log(chalkSuccess('Demo app removed.'));
