@@ -112,9 +112,9 @@ async function removeDemo(){
   await removeDemoFiles(pathsToRemove);
   let templates = await loadTemplates(fileTemplates);
   (filesToCreate.concat(templates)).map(file=>createFile(file));
+  removePackageJsonScriptEntry('remove-demo');
 }
 
 removeDemo();
-removePackageJsonScriptEntry('remove-demo');
 
 console.log(chalkSuccess('Demo app removed.'));
