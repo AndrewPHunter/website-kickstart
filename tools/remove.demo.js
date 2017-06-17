@@ -7,10 +7,10 @@ import {chalkSuccess} from './chalkConfig';
 /* eslint-disable no-console */
 
 const fileTemplates = [
-  {path: './src/index.ejs', file: path.resolve(__dirname, 'template/index.default.html')},
-  {path: './src/empty.spec.js', file:path.resolve(__dirname, 'template/empty.spec.js')},
-  {path: './src/styles/_site.theme.scss', file:path.resolve(__dirname, 'template/_site.theme.scss')},
-  {path: './src/styles/site.common.scss', file:path.resolve(__dirname, 'template/site.common.scss')}
+  {path: './src/index.ejs', file: path.resolve(__dirname, 'templates/index.default.html')},
+  {path: './src/empty.spec.js', file:path.resolve(__dirname, 'templates/empty.spec.js')},
+  {path: './src/styles/_site.theme.scss', file:path.resolve(__dirname, 'templates/_site.theme.scss')},
+  {path: './src/styles/site.common.scss', file:path.resolve(__dirname, 'templates/site.common.scss')}
 ];
 
 const pathsToRemove = [
